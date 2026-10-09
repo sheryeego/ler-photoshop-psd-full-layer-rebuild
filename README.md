@@ -26,12 +26,6 @@ PNG、JPG 本身没有原设计图层。成品属于参考重建；提供原始�
 
 技能安装包不包含设计软件、字体或账号。
 
-## 获取技能
-
-仓库已公开。点击主页的 **Code → Download ZIP** 即可下载，无需登录 GitHub；也可以使用下方示例让 Codex 帮你安装。
-
-下载地址：[ler-photoshop-psd-full-layer-rebuild](https://github.com/sheryeego/ler-photoshop-psd-full-layer-rebuild)。
-
 ## 安装操作
 
 1. 将下载的 ZIP 解压到一个新目录。
