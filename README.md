@@ -1,187 +1,84 @@
-# ler-photoshop-psd-full-layer-rebuild
+# ler PSD Rebuild
 
-**在 Windows 上，用 Adobe Photoshop 或 PhotoCraft 把参考图重建为可编辑分层 PSD。** 当前技能版本：**2.0.0**。新任务未指定软件时，默认 **Adobe Photoshop**；PhotoCraft 适配继续保留。
+**让参考图片成为能够继续修改的分层 PSD。**
 
-![参考图通过完整素材重建，组成文字、主体、装饰、光影和背景等可编辑 PSD 图层](images/psd-layer-rebuild-demo.png)
+![参考图片与可编辑 PSD 分层示意](images/psd-layer-rebuild-demo.png)
 
-图中演示参考图到完整素材与独立图层的重建流程。此图为分层示意，实际 PSD 的编辑能力以验证结果为准。
+这是一项供 Codex 使用的技能，支持 **Windows＋Adobe Photoshop** 和 **Windows＋PhotoCraft**。当前完整技能版本为 **2.0.0**；新任务未指定软件时，默认使用 Adobe Photoshop，也可以指定 PhotoCraft。
 
-这是一套供 Codex 使用的工作流、参考文档和自动化脚本。它要求完整主体、完整背景、原生文字、内嵌智能对象和适用的独立光影，并验证 PSD 保存后能真实编辑。
+宣传图是分层示意。实际成品的可编辑范围以随附说明和实际文件验证为准。
 
-PNG／JPG 没有可恢复的原始图层；本技能指导素材重建与必要补绘。主体默认使用完整素材参与构图，外部蒙版控制显示范围，移开主要对象后背景应连贯。补绘、字体替代和内部未继续拆分的范围须说明。
+## 可以用来做什么
 
-### 默认软件与选择规则
+- 将海报、广告或产品参考图片重建为分层 PSD，方便继续调整。
+- 修改文字、移动主体、调整背景和适用的装饰效果。
+- 根据需要编辑的对象安排图层，并附上中文使用说明。
 
-- 新任务没有指定执行软件或最终编辑软件时，默认 **Windows＋Adobe Photoshop**，在 Photoshop 中制作、保存、重开和编辑验收。
-- 明确指定 **PhotoCraft**，或续作任务已确认使用 PhotoCraft 时，使用 PhotoCraft；最终编辑软件的明确要求优先。
-- 批量组装、重复操作或只有 PhotoCraft 的环境，可以在提示词里写明 PhotoCraft。Photoshop 不可用时先说明原因；切换会改变既定交付或验收范围时确认。
-- PhotoCraft 制作的 PSD 若最终交给 Photoshop 使用，仍须在实际 Photoshop 中重开并验证。未执行的检查写 `not_run`。
+PNG、JPG 本身没有原设计图层。成品属于参考重建；提供原始素材、Logo 和字体，有助于保留设计细节。补绘、字体替代与无法独立编辑的范围会在说明中注明。
 
-不需要每次指定 Photoshop。下面这句即可使用默认路线：
+## 使用前准备
 
-```text
-使用 $ler-photoshop-psd-full-layer-rebuild，把这张参考图重建为完整素材组成的可编辑分层 PSD，完成保存重开和编辑验收。成品保存到：[自己的成品目录]，另建任务子目录。
-```
+- 可使用本地技能的 Codex。
+- Windows 上的 Adobe Photoshop 或 PhotoCraft。
+- 使用 PhotoCraft 时，准备 Python 3.10 或更高版本。
+- 参考图片，以及你能提供的原素材、Logo 和字体。
+- 已取得的完整技能安装包。
 
-## 1. 获取与下载
+技能安装包不包含设计软件、字体或账号。
 
-- **安装 ZIP**：取得完整技能安装包后，按下文手动安装。
-- **GitHub 仓库**：公开仓库，可直接访问、下载 ZIP 或通过安装器安装，无需仓库访问授权。
+## 获取技能
 
-## 2. 使用前准备
+仓库已公开。点击主页的 **Code → Download ZIP** 即可下载，无需登录 GitHub；也可以使用下方示例让 Codex 帮你安装。
 
-| 项目 | 要求 |
-|---|---|
-| 操作系统 | Windows；其他系统不在本版验证范围内。 |
-| Codex | 能读取本地 `SKILL.md` 技能，并能在获得授权后执行本地文件操作和脚本。 |
-| Photoshop 路线 | 自备 Windows Adobe Photoshop，先打开应用。桥接使用 COM＋JSX，默认连接 Photoshop 2026／主版本 27；其他版本先核实 ProgID 和版本。 |
-| PhotoCraft 路线 | 自备含 `photocraft-cli.exe` 的 PhotoCraft；本版以 CLI **0.5.0** 实测。提供自己的 CLI 绝对路径。 |
-| Python | PhotoCraft 适配器和命令行安装示例需要 Python **3.10＋**；适配器只使用标准库。仅使用 Photoshop 桥接时不需要该适配器。 |
-| 素材 | 提供参考图及可取得的原素材、Logo、字体；需要补绘时，当前 Codex 环境须有实际可用的图像生成／编辑工具。 |
+下载地址：[ler-photoshop-psd-full-layer-rebuild](https://github.com/sheryeego/ler-photoshop-psd-full-layer-rebuild)。
 
-技能不附带 Photoshop、PhotoCraft、字体、模型或账号，也不会自动安装这些软件。原生文字会使用本机实际存在的字体。
+## 安装操作
 
-## 3. 安装技能
+1. 将下载的 ZIP 解压到一个新目录。
+2. GitHub 下载包有一层仓库外壳。进入外层目录，再找到包含 `SKILL.md` 的 **`ler-photoshop-psd-full-layer-rebuild` 子文件夹**，保留这个子文件夹内的全部文件。不要把整个仓库外层目录当作技能安装。
+3. 确认安装位置。Codex 的常见位置是 `%USERPROFILE%\.codex\skills`；如果设置了 `CODEX_HOME`，则使用 `%CODEX_HOME%\skills`。自定义位置应选择 Codex 实际读取的技能目录。
+4. 已有同名技能时，将旧版完整备份到技能目录之外，再放入整个新版本文件夹，避免混合两个版本。
+5. 安装后检查入口为 `<技能目录>\ler-photoshop-psd-full-layer-rebuild\SKILL.md`，然后在 Codex 下一轮输入技能名称使用。
 
-完整技能在仓库的 **`ler-photoshop-psd-full-layer-rebuild/` 子目录**。安装时保留整个文件夹，不能只复制 `SKILL.md`。
-
-### 方法 A：手动安装 ZIP
-
-1. 取得技能 ZIP 后，先核对随包 SHA-256。也可直接在本仓库主页点击 **Code → Download ZIP**，无需登录 GitHub。
-2. 解压到新目录，找到直接包含 `SKILL.md` 的 **`ler-photoshop-psd-full-layer-rebuild`** 文件夹。GitHub 仓库 ZIP 还有一层仓库外壳，要进入外层才能找到技能子目录。
-3. 选择自己的 Codex skills 目录。默认是 `%USERPROFILE%\.codex\skills`；设置了 `CODEX_HOME` 时为 `%CODEX_HOME%\skills`。
-4. 已有同名技能时，先把旧版完整备份到 skills 扫描目录之外，再复制整个新技能文件夹。不要合并两个版本。
-5. 安装后的入口应为 `<自己的 skills 目录>\ler-photoshop-psd-full-layer-rebuild\SKILL.md`。在 Codex 下一轮输入技能名称使用。
-
-不要把整个仓库外层文件夹当作技能安装，也不要把自动化脚本单独复制到别处。
-
-### 方法 B：让 Codex 从 GitHub 安装
-
-把下面这段话粘贴到 Codex。公开仓库的 ZIP 下载不需要 GitHub 账号或访问令牌：
+也可以让 Codex 帮你安装：
 
 ```text
 使用 $skill-installer，从这个 GitHub 仓库安装技能：
 https://github.com/sheryeego/ler-photoshop-psd-full-layer-rebuild
 仓库内技能目录：ler-photoshop-psd-full-layer-rebuild
 分支：main
-优先使用公开 ZIP 下载方式。
-安装前告诉我准确安装位置，允许我选择自己的位置。
-如果已存在同名技能，先说明版本、备份旧版，再完整替换，不混合文件。
-安装后核对 SKILL.md、agents、assets、references 和 scripts 都已安装。
+安装前告诉我准确位置，并允许我选择自定义位置。
+如果已有同名技能，先备份旧版，再完整替换。
 ```
 
-确认 Codex 给出的目标位置后再批准安装。通常为 `%USERPROFILE%\.codex\skills\ler-photoshop-psd-full-layer-rebuild`；配置了 `CODEX_HOME` 时使用其 `skills` 子目录。下载失败时，使用方法 A；不要把访问令牌粘贴进聊天或 README。
+## 使用方法
 
-### 方法 C：命令行安装
-
-适合已有 Python、Codex 和内置 `skill-installer` 的使用者。此命令直接下载公开 ZIP，不要求安装 Git 或登录 GitHub。在 PowerShell 执行：
-
-```powershell
-$codexRoot = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE '.codex' }
-$installer = Join-Path $codexRoot 'skills\.system\skill-installer\scripts\install-skill-from-github.py'
-python -X utf8 $installer --repo sheryeego/ler-photoshop-psd-full-layer-rebuild --ref main --path ler-photoshop-psd-full-layer-rebuild --method download
-```
-
-该命令使用安装器的默认目标目录。自定义目录可追加 `--dest '<自己的 Codex skills 目录>'`，该目录应是 Codex 实际读取的位置。没有安装器脚本时使用方法 A 或 B。安装器遇到同名目标目录会停止；更新前先备份，不用删除命令强行覆盖。
-
-## 4. 使用：Windows＋PhotoCraft
-
-附上参考图，把下面的提示词交给 Codex。方括号内容替换为自己的信息：
+附上参考图，然后将下面的提示词交给 Codex：
 
 ```text
 使用 $ler-photoshop-psd-full-layer-rebuild，把这张参考图重建为可编辑分层 PSD。
+画布：沿用原图尺寸。
+我需要能独立修改文字、移动主体，并调整背景和适用的装饰效果。
+请完成保存、重新打开和实际编辑检查，说明补绘、字体替代及可编辑范围。
+成品保存在：[我的成品目录]，另建任务子目录。
+交付 PSD、预览和中文编辑说明。
+```
+
+未指定软件时使用 Adobe Photoshop。要使用 PhotoCraft，在提示词中增加：
+
+```text
 执行软件：Windows＋PhotoCraft。
-PhotoCraft CLI 路径：[自己的 photocraft-cli.exe 绝对路径]。
-画布：[沿用原图尺寸，或填写目标尺寸]。
-要求完整主体、完整背景、原生文字和内嵌素材，使用外部蒙版控制构图。
-按需要独立编辑的对象分层，说明内部没有继续拆分的范围。
-补绘部分、字体替代和与参考图的差异要记录。
-完成最终 PSD 保存重开、改字、移动、内嵌源完整性、背景和图层复合验证。
-成品保存到：[自己的成品目录]，另建任务子目录。
-只交付我需要的 PSD、预览和中文编辑说明；测试副本、脚本及日志留在工作区。
+PhotoCraft CLI 路径：[我的 photocraft-cli.exe 路径]。
 ```
 
-CLI 路径应指向 **`photocraft-cli.exe`**，不是桌面应用快捷方式。路径有空格也可以使用，不需要沿用作者的安装目录。
+如果最终需要在另一款软件中编辑，请同时写明该软件，并要求在它里面重新打开及检查成品。
 
-可先做只读连接检查，示例路径须替换为自己的路径：
+## 使用时常见的问题
 
-```powershell
-$codexRoot = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE '.codex' }
-$skillRoot = Join-Path $codexRoot 'skills\ler-photoshop-psd-full-layer-rebuild'
-$photoCraftCli = 'E:\Apps\PhotoCraft\photocraft-cli.exe'
-python -X utf8 (Join-Path $skillRoot 'scripts\photocraft_runner.py') --cli $photoCraftCli probe
-```
-
-成功时返回 CLI 版本和路径。该检查不启动桌面应用，不创建常驻服务。也可通过 `PHOTOCRAFT_CLI` 或 PATH 配置 CLI 路径。
-
-## 5. 使用：Windows＋Adobe Photoshop
-
-先打开 Photoshop，再附上参考图并输入：
-
-```text
-使用 $ler-photoshop-psd-full-layer-rebuild，把这张参考图重建为可编辑分层 PSD。
-执行软件：Windows＋Adobe Photoshop。
-先检查我的 Photoshop 版本和可用的自动化连接。
-要求完整主体、完整背景、原生文字和内嵌智能对象，并按独立编辑需求分层。
-保留原图与旧版，不覆盖我尚未保存的文档。
-补绘、字体替代和未继续拆分的范围要写入中文说明。
-在实际 Photoshop 中完成最终 PSD 保存重开、改字、移动、背景和素材完整性验收。
-成品保存到：[自己的成品目录]，另建任务子目录。
-交付 PSD、预览和中文编辑说明；制作记录与测试副本留在工作区。
-```
-
-只读桥接检查：
-
-```powershell
-$codexRoot = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE '.codex' }
-$skillRoot = Join-Path $codexRoot 'skills\ler-photoshop-psd-full-layer-rebuild'
-& (Join-Path $skillRoot 'scripts\Invoke-Photoshop.ps1') -ProbeOnly
-```
-
-默认 ProgID 为 `Photoshop.Application.200`，预期主版本为 27。其他版本先核实，再按 [Photoshop 自动化说明](ler-photoshop-psd-full-layer-rebuild/references/photoshop-automation.md) 显式传入参数；不自动改注册表或重启应用。
-
-## 6. 如何判断结果可用
-
-- 文字仍是原生文字层，并能改字后保存重开。
-- 智能对象内是完整源素材；关闭构图蒙版后可检查被隐藏的内容。
-- 移开主要对象后背景连贯，没有空洞或原主体残片。
-- 适用的阴影、光效和装饰能独立调整；无法可靠分离的内在材质光照有范围说明。
-- 最终 PSD 在目标软件中真实重开并完成编辑测试；仅有图层数量或成功保存日志不够。
-
-**PhotoCraft 验收通过不代表 Photoshop 已验收。** 如果最终用 Photoshop 编辑 PhotoCraft 制作的 PSD，请增加：“必须在我的 Photoshop 中完成真实重开与编辑验收。”未执行的软件检查必须写明 `not_run`。
-
-## 7. 本版测试范围
-
-PhotoCraft CLI 0.5.0 的独立几何样例通过 12 项结构和真实编辑检查，包括中英文文字、形状、完整透明内嵌源、分组、外部固定蒙版、主体移动、图层复合、PSD 重开和预览像素一致性；另检查中文路径、分批执行和已有成品防覆盖。
-
-以上 PhotoCraft 样例是 1.1.0 的既有测试记录；2.0.0 仅更新默认软件选择、提示词和版本说明，自动化脚本保持原样，并核对技能格式、引用、JSON 和打包内容。**本次 2.0.0 更新未执行 Photoshop 或 PhotoCraft 的原生重开测试**。几何样例验证编辑通路，不代表任意客户参考图已经完成或能精确还原。
-
-可选的 `scripts/smoke_photocraft.py` 使用 PhotoCraft 生成结构样例，像素校验额外需要 Pillow。缺少 Pillow 时不会自动安装；它不是正常 CLI 组装的必需依赖。命令和范围见 [PhotoCraft 自动化说明](ler-photoshop-psd-full-layer-rebuild/references/photocraft-automation.md)。
-
-## 8. 常见问题
-
-| 现象 | 处理 |
+| 问题 | 处理 |
 |---|---|
-| 仓库链接显示 404／无法下载 | 核对完整链接、仓库名称与网络连接，或向所有者取得安装 ZIP。公开仓库无需访问授权。 |
-| Codex 找不到技能 | 核对安装后的 `SKILL.md` 路径，保留完整文件夹；下一轮输入完整技能名称。 |
-| 同名目录已存在 | 检查旧版并先完整备份到 skills 扫描目录之外，再更新；不要混合文件。 |
-| 找不到 PhotoCraft CLI | 提供真实的 `photocraft-cli.exe` 路径，或配置 `PHOTOCRAFT_CLI`／PATH。 |
-| Photoshop 连接失败 | 先确认应用已打开，核对实际版本、ProgID 和预期主版本。 |
-| 字体缺失 | 提供已安装字体或确认替代字体，记录外观差异。 |
-| 宿主阻止脚本或文件访问 | 核对准确路径、操作范围与授权；不关闭系统保护或修改系统策略。 |
-| 期待恢复原始设计图层 | PNG／JPG 只能重建；提供原始设计文件和素材才能保留其原有结构。 |
-
-## 文件导航
-
-```text
-README.md
-CHANGELOG.md
-ler-photoshop-psd-full-layer-rebuild/
-  SKILL.md
-  agents/openai.yaml
-  assets/
-  references/
-  scripts/
-```
-
-[技能入口](ler-photoshop-psd-full-layer-rebuild/SKILL.md) · [PhotoCraft 自动化](ler-photoshop-psd-full-layer-rebuild/references/photocraft-automation.md) · [Photoshop 自动化](ler-photoshop-psd-full-layer-rebuild/references/photoshop-automation.md) · [原生验收](ler-photoshop-psd-full-layer-rebuild/references/native-validation.md) · [更新记录](CHANGELOG.md)
+| Codex 找不到技能 | 检查文件夹名称和 `SKILL.md` 的位置；保留完整文件夹，并在下一轮输入完整技能名称。 |
+| 不知道在哪里下载 | 在仓库主页选择 Code → Download ZIP；只保存介绍页或宣传图无法安装技能。 |
+| 字体与参考不同 | 提供实际字体，或确认替代字体并查看成品差异。 |
+| 想恢复原始设计文件 | 提供原始 PSD 和素材。只有普通图片时，只能进行参考重建。 |
+| 成品要在另一款软件中使用 | 写明最终编辑软件，并要求完成实际打开与编辑检查。 |
