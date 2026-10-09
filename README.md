@@ -1,17 +1,15 @@
 # ler-photoshop-psd-full-layer-rebuild
 
-**在 Windows 上，用 Adobe Photoshop 或 PhotoCraft 把参考图重建为可编辑分层 PSD。** 当前技能版本：**1.1.0**。本仓库为私有分发。
+**在 Windows 上，用 Adobe Photoshop 或 PhotoCraft 把参考图重建为可编辑分层 PSD。** 当前技能版本：**1.1.0**。
 
 这是一套供 Codex 使用的工作流、参考文档和自动化脚本。它要求完整主体、完整背景、原生文字、内嵌智能对象和适用的独立光影，并验证 PSD 保存后能真实编辑。
 
 PNG／JPG 没有可恢复的原始图层；本技能指导素材重建与必要补绘。主体默认使用完整素材参与构图，外部蒙版控制显示范围，移开主要对象后背景应连贯。补绘、字体替代和内部未继续拆分的范围须说明。
 
-## 1. 私下分发方式
+## 1. 获取与下载
 
-- **私下提供安装 ZIP**：仓库所有者把完整技能安装包交给指定接收者，接收者按下文手动安装，无需获得仓库权限。
-- **私下提供仓库链接**：接收者须登录已获仓库访问权限的 GitHub 账号；仅收到链接并不能下载私有仓库。
-
-个人账号私有仓库的协作者权限包含写入。仅想提供下载时，可优先私下发送安装 ZIP，无需添加仓库协作者。权限规则见 [GitHub 官方说明](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/permission-levels-for-a-personal-account-repository)。技能包不附带仓库访问凭据。
+- **安装 ZIP**：取得完整技能安装包后，按下文手动安装。
+- **GitHub 仓库**：使用已获仓库访问权限的账号登录 GitHub，下载 ZIP 或通过安装器安装。
 
 ## 2. 使用前准备
 
@@ -30,9 +28,9 @@ PNG／JPG 没有可恢复的原始图层；本技能指导素材重建与必要�
 
 完整技能在仓库的 **`ler-photoshop-psd-full-layer-rebuild/` 子目录**。安装时保留整个文件夹，不能只复制 `SKILL.md`。
 
-### 方法 A：手动安装 ZIP（私下分发推荐）
+### 方法 A：手动安装 ZIP
 
-1. 收到所有者私下提供的技能 ZIP 后，先核对随包 SHA-256。若已获仓库访问权限，也可登录 GitHub，在本仓库主页点击 **Code → Download ZIP**。
+1. 取得技能 ZIP 后，先核对随包 SHA-256。若已获仓库访问权限，也可登录 GitHub，在本仓库主页点击 **Code → Download ZIP**。
 2. 解压到新目录，找到直接包含 `SKILL.md` 的 **`ler-photoshop-psd-full-layer-rebuild`** 文件夹。GitHub 仓库 ZIP 还有一层仓库外壳，要进入外层才能找到技能子目录。
 3. 选择自己的 Codex skills 目录。默认是 `%USERPROFILE%\.codex\skills`；设置了 `CODEX_HOME` 时为 `%CODEX_HOME%\skills`。
 4. 已有同名技能时，先把旧版完整备份到 skills 扫描目录之外，再复制整个新技能文件夹。不要合并两个版本。
@@ -147,7 +145,7 @@ Photoshop 桥接与检查脚本保持原样，并做了静态检查；**1.1.0 �
 
 | 现象 | 处理 |
 |---|---|
-| 私有仓库链接显示 404／无法下载 | 核对账号访问权限和登录状态，或向所有者取得私下提供的安装 ZIP。 |
+| 仓库链接显示 404／无法下载 | 核对账号访问权限和登录状态，或向所有者取得安装 ZIP。 |
 | Codex 找不到技能 | 核对安装后的 `SKILL.md` 路径，保留完整文件夹；下一轮输入完整技能名称。 |
 | 同名目录已存在 | 检查旧版并先完整备份到 skills 扫描目录之外，再更新；不要混合文件。 |
 | 找不到 PhotoCraft CLI | 提供真实的 `photocraft-cli.exe` 路径，或配置 `PHOTOCRAFT_CLI`／PATH。 |
