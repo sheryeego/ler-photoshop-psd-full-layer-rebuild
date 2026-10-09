@@ -7,7 +7,7 @@
     "fail"
   ],
   "skill": "ler-photoshop-psd-full-layer-rebuild",
-  "skillVersion": "1.1.0",
+  "skillVersion": "2.0.0",
   "photoshop": {
     "version": null,
     "applicationPath": null,

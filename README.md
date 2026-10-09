@@ -1,6 +1,6 @@
 # ler-photoshop-psd-full-layer-rebuild
 
-**在 Windows 上，用 Adobe Photoshop 或 PhotoCraft 把参考图重建为可编辑分层 PSD。** 当前技能版本：**1.1.0**。
+**在 Windows 上，用 Adobe Photoshop 或 PhotoCraft 把参考图重建为可编辑分层 PSD。** 当前技能版本：**2.0.0**。新任务未指定软件时，默认 **Adobe Photoshop**；PhotoCraft 适配继续保留。
 
 ![参考图通过完整素材重建，组成文字、主体、装饰、光影和背景等可编辑 PSD 图层](images/psd-layer-rebuild-demo.png)
 
@@ -9,6 +9,19 @@
 这是一套供 Codex 使用的工作流、参考文档和自动化脚本。它要求完整主体、完整背景、原生文字、内嵌智能对象和适用的独立光影，并验证 PSD 保存后能真实编辑。
 
 PNG／JPG 没有可恢复的原始图层；本技能指导素材重建与必要补绘。主体默认使用完整素材参与构图，外部蒙版控制显示范围，移开主要对象后背景应连贯。补绘、字体替代和内部未继续拆分的范围须说明。
+
+### 默认软件与选择规则
+
+- 新任务没有指定执行软件或最终编辑软件时，默认 **Windows＋Adobe Photoshop**，在 Photoshop 中制作、保存、重开和编辑验收。
+- 明确指定 **PhotoCraft**，或续作任务已确认使用 PhotoCraft 时，使用 PhotoCraft；最终编辑软件的明确要求优先。
+- 批量组装、重复操作或只有 PhotoCraft 的环境，可以在提示词里写明 PhotoCraft。Photoshop 不可用时先说明原因；切换会改变既定交付或验收范围时确认。
+- PhotoCraft 制作的 PSD 若最终交给 Photoshop 使用，仍须在实际 Photoshop 中重开并验证。未执行的检查写 `not_run`。
+
+不需要每次指定 Photoshop。下面这句即可使用默认路线：
+
+```text
+使用 $ler-photoshop-psd-full-layer-rebuild，把这张参考图重建为完整素材组成的可编辑分层 PSD，完成保存重开和编辑验收。成品保存到：[自己的成品目录]，另建任务子目录。
+```
 
 ## 1. 获取与下载
 
@@ -141,7 +154,7 @@ $skillRoot = Join-Path $codexRoot 'skills\ler-photoshop-psd-full-layer-rebuild'
 
 PhotoCraft CLI 0.5.0 的独立几何样例通过 12 项结构和真实编辑检查，包括中英文文字、形状、完整透明内嵌源、分组、外部固定蒙版、主体移动、图层复合、PSD 重开和预览像素一致性；另检查中文路径、分批执行和已有成品防覆盖。
 
-Photoshop 桥接与检查脚本保持原样，并做了静态检查；**1.1.0 更新未在 Photoshop 中执行原生重开测试**。几何样例验证编辑通路，不代表任意客户参考图已经完成或能精确还原。
+以上 PhotoCraft 样例是 1.1.0 的既有测试记录；2.0.0 仅更新默认软件选择、提示词和版本说明，自动化脚本保持原样，并核对技能格式、引用、JSON 和打包内容。**本次 2.0.0 更新未执行 Photoshop 或 PhotoCraft 的原生重开测试**。几何样例验证编辑通路，不代表任意客户参考图已经完成或能精确还原。
 
 可选的 `scripts/smoke_photocraft.py` 使用 PhotoCraft 生成结构样例，像素校验额外需要 Pillow。缺少 Pillow 时不会自动安装；它不是正常 CLI 组装的必需依赖。命令和范围见 [PhotoCraft 自动化说明](ler-photoshop-psd-full-layer-rebuild/references/photocraft-automation.md)。
 

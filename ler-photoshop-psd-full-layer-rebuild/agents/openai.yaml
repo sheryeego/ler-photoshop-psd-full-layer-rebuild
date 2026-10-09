@@ -1,4 +1,4 @@
 interface:
   display_name: "ler · Photoshop / PhotoCraft 分层 PSD 重建"
-  short_description: "在 Windows 用 Photoshop 或 PhotoCraft 重建完整素材、原生文字和可编辑分层 PSD"
-  default_prompt: "使用 $ler-photoshop-psd-full-layer-rebuild 在我选定的 Photoshop 或 PhotoCraft 中，将参考图片重建为完整素材组成的可编辑 PSD，按实际内容分层并保存重开验收，直接交付必要成品，不需要 ZIP。"
+  short_description: "默认 Windows Photoshop，并适配 PhotoCraft，重建完整素材和可编辑分层 PSD"
+  default_prompt: "使用 $ler-photoshop-psd-full-layer-rebuild 将参考图片重建为完整素材组成的可编辑 PSD；新任务未指定软件时用 Windows Adobe Photoshop，明确指定或任务已确认 PhotoCraft 时按该路线制作，按实际内容分层并保存重开验收，直接交付必要成品，不需要 ZIP。"

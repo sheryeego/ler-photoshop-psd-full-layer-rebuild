@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "skill": "ler-photoshop-psd-full-layer-rebuild",
-  "skillVersion": "1.1.0",
+  "skillVersion": "2.0.0",
   "instructions": "由本次用户请求填写实际值；null 和空数组代表尚未确定，不代表检查已通过。",
   "mode": "full_rebuild",
   "reference": {

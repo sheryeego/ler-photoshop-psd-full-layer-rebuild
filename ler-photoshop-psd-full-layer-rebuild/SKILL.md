@@ -3,7 +3,7 @@ name: ler-photoshop-psd-full-layer-rebuild
 description: 在 Windows 上使用 Adobe Photoshop 或 PhotoCraft，将参考图片重建为完整素材组成的可编辑分层 PSD；包含原生文字、内嵌智能对象、完整背景及保存重开验收。适用于完整分层重建、补全素材和现有 PSD 补层。
 metadata:
   owner: ler
-  version: 1.1.0
+  version: 2.0.0
   updated: 2026-10-09
 ---
 
@@ -21,7 +21,9 @@ metadata:
 
 ## 选择执行软件
 
-用户指定 Photoshop 或 PhotoCraft 时使用对应路线；未指定时沿用本任务已确认的软件。两种软件都可用且没有既有选择时，以最终编辑软件和所需能力决定；选择实质影响交付时确认。仅读取本次软件对应的实现参考，不为一次任务加载两套操作文档。
+用户明确指定执行软件或最终编辑软件时，优先使用对应路线；续作任务沿用已确认的软件。新任务未指定软件且没有既有选择时，默认 **Windows＋Adobe Photoshop**。PhotoCraft 保留为用户指定、批量组装或已确认任务的执行路线。
+
+先检查默认路线是否实际可用。Photoshop 不可用时说明原因，可以继续准备素材；改用 PhotoCraft 会改变既定交付或验收范围时确认，不自动安装软件或把 PhotoCraft 验收写成 Photoshop 验收。仅读取本次软件对应的实现参考，不为一次任务加载两套操作文档。
 
 | 路线 | 读取与连接 | 验收范围 |
 |---|---|---|
