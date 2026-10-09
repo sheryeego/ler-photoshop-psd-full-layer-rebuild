@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "skill": "ler-photoshop-psd-full-layer-rebuild",
+  "skillVersion": "1.1.0",
+  "instructions": "由本次用户请求填写实际值；null 和空数组代表尚未确定，不代表检查已通过。",
+  "mode": "full_rebuild",
+  "reference": {
+    "path": null,
+    "sha256": null,
+    "width": null,
+    "height": null
+  },
+  "output": {
+    "newVersionDirectory": null,
+    "canvasWidth": null,
+    "canvasHeight": null,
+    "format": "PSD",
+    "zipRequested": false
+  },
+  "sources": [],
+  "independentUnits": [],
+  "fonts": [],
+  "textExceptions": [],
+  "aiCompletionRegions": [],
+  "effectGroups": [],
+  "layerComps": [],
+  "knownDifferences": [],
+  "deliverables": [
+    "可编辑PSD",
+    "默认成品预览",
+    "原图对照",
+    "实际使用的完整素材总览",
+    "中文编辑说明",
+    "验证记录"
+  ],
+  "sourceEntryGuide": {
+    "path": "绝对路径",
+    "sha256": "输入文件哈希",
+    "role": "完整背景/主体/Logo等",
+    "usedBy": "默认成品内的图层路径"
+  },
+  "unitEntryGuide": {
+    "name": "中文名",
+    "source": "来源",
+    "granularity": "独立对象或完整图示",
+    "transparentRequired": true,
+    "embeddedRequired": true,
+    "defaultCompositionLayer": "图层路径",
+    "completionNotes": "补全区域或无补全"
+  },
+  "fontEntryGuide": {
+    "role": "本次文字用途",
+    "requestedFont": "用户指定值",
+    "postScriptName": "核验后的字体名",
+    "weight": null,
+    "substitutionApproved": false
+  },
+  "execution": {
+    "application": null,
+    "version": null,
+    "transport": null,
+    "cliPath": null,
+    "crossApplicationValidationRequired": false,
+    "finalEditingApplication": null
+  }
+}

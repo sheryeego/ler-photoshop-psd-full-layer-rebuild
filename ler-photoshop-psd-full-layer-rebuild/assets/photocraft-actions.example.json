@@ -1,0 +1,9 @@
+{
+  "steps": [
+    ["shape.create", {"kind":"rect","rect":[20,20,600,440],"fill":"#eaf0fa","name":"可编辑底板"}],
+    ["shape.create", {"kind":"ellipse","rect":[220,120,200,200],"fill":"#2f6bff","name":"可编辑圆形"}],
+    ["type.create", {"x":30,"y":65,"text":"可编辑文字 / Editable text","font":"Microsoft YaHei","size":24,"color":"#20242a","name":"中英文文字"}],
+    ["layerComp.new", {"name":"默认成品"}],
+    ["layerComp.apply", {"comp":"默认成品"}]
+  ]
+}

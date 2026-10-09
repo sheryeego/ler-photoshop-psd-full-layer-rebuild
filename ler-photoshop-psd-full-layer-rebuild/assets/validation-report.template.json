@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "statusVocabulary": [
+    "not_run",
+    "not_applicable",
+    "pass",
+    "fail"
+  ],
+  "skill": "ler-photoshop-psd-full-layer-rebuild",
+  "skillVersion": "1.1.0",
+  "photoshop": {
+    "version": null,
+    "applicationPath": null,
+    "transport": null
+  },
+  "document": {
+    "path": null,
+    "sha256": null,
+    "width": null,
+    "height": null,
+    "reopenedCopyPath": null,
+    "reopenedCopySha256": null
+  },
+  "checks": {
+    "savedReopen": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "defaultComposition": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "completeEmbeddedSourcesIncludingNested": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "nativeTextEditing": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "subjectMovementAndExternalMasks": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "completeBackground": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "independentEffects": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "allApplicableLayerComps": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "restoredDefaultView": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "previewMatchesReopenedPSD": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    },
+    "referenceVisualComparison": {
+      "status": "not_run",
+      "evidence": [],
+      "notes": ""
+    }
+  },
+  "layerInventoryPath": null,
+  "aiCompletionNotes": [],
+  "knownDifferences": [],
+  "unverifiedItems": [],
+  "overallComplete": false,
+  "authoringApplication": null,
+  "photocraft": {
+    "version": null,
+    "cliPath": null,
+    "transport": null
+  },
+  "applicationValidation": {
+    "photoshop": {
+      "savedReopen": "not_run",
+      "nativeTextEditing": "not_run",
+      "embeddedSourceEditing": "not_run",
+      "evidence": []
+    },
+    "photocraft": {
+      "savedReopen": "not_run",
+      "nativeTextEditing": "not_run",
+      "embeddedSourceEditing": "not_run",
+      "evidence": []
+    }
+  }
+}
