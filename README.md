@@ -26,7 +26,7 @@ PNG／JPG 没有可恢复的原始图层；本技能指导素材重建与必要�
 ## 1. 获取与下载
 
 - **安装 ZIP**：取得完整技能安装包后，按下文手动安装。
-- **GitHub 仓库**：使用已获仓库访问权限的账号登录 GitHub，下载 ZIP 或通过安装器安装。
+- **GitHub 仓库**：公开仓库，可直接访问、下载 ZIP 或通过安装器安装，无需仓库访问授权。
 
 ## 2. 使用前准备
 
@@ -47,7 +47,7 @@ PNG／JPG 没有可恢复的原始图层；本技能指导素材重建与必要�
 
 ### 方法 A：手动安装 ZIP
 
-1. 取得技能 ZIP 后，先核对随包 SHA-256。若已获仓库访问权限，也可登录 GitHub，在本仓库主页点击 **Code → Download ZIP**。
+1. 取得技能 ZIP 后，先核对随包 SHA-256。也可直接在本仓库主页点击 **Code → Download ZIP**，无需登录 GitHub。
 2. 解压到新目录，找到直接包含 `SKILL.md` 的 **`ler-photoshop-psd-full-layer-rebuild`** 文件夹。GitHub 仓库 ZIP 还有一层仓库外壳，要进入外层才能找到技能子目录。
 3. 选择自己的 Codex skills 目录。默认是 `%USERPROFILE%\.codex\skills`；设置了 `CODEX_HOME` 时为 `%CODEX_HOME%\skills`。
 4. 已有同名技能时，先把旧版完整备份到 skills 扫描目录之外，再复制整个新技能文件夹。不要合并两个版本。
@@ -57,29 +57,29 @@ PNG／JPG 没有可恢复的原始图层；本技能指导素材重建与必要�
 
 ### 方法 B：让 Codex 从 GitHub 安装
 
-先确认当前 GitHub 账号已获该私有仓库的访问权限，并在本机完成正常登录或配置可用的 Git 凭据。把下面这段话粘贴到 Codex：
+把下面这段话粘贴到 Codex。公开仓库的 ZIP 下载不需要 GitHub 账号或访问令牌：
 
 ```text
-使用 $skill-installer，从这个私有 GitHub 仓库安装技能：
+使用 $skill-installer，从这个 GitHub 仓库安装技能：
 https://github.com/sheryeego/ler-photoshop-psd-full-layer-rebuild
 仓库内技能目录：ler-photoshop-psd-full-layer-rebuild
 分支：main
-使用我本机已有且获授权的 GitHub 访问方式，不显示或写入令牌。
+优先使用公开 ZIP 下载方式。
 安装前告诉我准确安装位置，允许我选择自己的位置。
 如果已存在同名技能，先说明版本、备份旧版，再完整替换，不混合文件。
 安装后核对 SKILL.md、agents、assets、references 和 scripts 都已安装。
 ```
 
-确认 Codex 给出的目标位置后再批准安装。通常为 `%USERPROFILE%\.codex\skills\ler-photoshop-psd-full-layer-rebuild`；配置了 `CODEX_HOME` 时使用其 `skills` 子目录。访问失败或没有仓库权限时，使用方法 A；不要把访问令牌粘贴进聊天或 README。
+确认 Codex 给出的目标位置后再批准安装。通常为 `%USERPROFILE%\.codex\skills\ler-photoshop-psd-full-layer-rebuild`；配置了 `CODEX_HOME` 时使用其 `skills` 子目录。下载失败时，使用方法 A；不要把访问令牌粘贴进聊天或 README。
 
 ### 方法 C：命令行安装
 
-适合已有 Python、Git、Codex、内置 `skill-installer`，且本机 Git 凭据能访问该私有仓库的使用者。在 PowerShell 执行：
+适合已有 Python、Codex 和内置 `skill-installer` 的使用者。此命令直接下载公开 ZIP，不要求安装 Git 或登录 GitHub。在 PowerShell 执行：
 
 ```powershell
 $codexRoot = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE '.codex' }
 $installer = Join-Path $codexRoot 'skills\.system\skill-installer\scripts\install-skill-from-github.py'
-python -X utf8 $installer --repo sheryeego/ler-photoshop-psd-full-layer-rebuild --ref main --path ler-photoshop-psd-full-layer-rebuild --method git
+python -X utf8 $installer --repo sheryeego/ler-photoshop-psd-full-layer-rebuild --ref main --path ler-photoshop-psd-full-layer-rebuild --method download
 ```
 
 该命令使用安装器的默认目标目录。自定义目录可追加 `--dest '<自己的 Codex skills 目录>'`，该目录应是 Codex 实际读取的位置。没有安装器脚本时使用方法 A 或 B。安装器遇到同名目标目录会停止；更新前先备份，不用删除命令强行覆盖。
@@ -162,7 +162,7 @@ PhotoCraft CLI 0.5.0 的独立几何样例通过 12 项结构和真实编辑检�
 
 | 现象 | 处理 |
 |---|---|
-| 仓库链接显示 404／无法下载 | 核对账号访问权限和登录状态，或向所有者取得安装 ZIP。 |
+| 仓库链接显示 404／无法下载 | 核对完整链接、仓库名称与网络连接，或向所有者取得安装 ZIP。公开仓库无需访问授权。 |
 | Codex 找不到技能 | 核对安装后的 `SKILL.md` 路径，保留完整文件夹；下一轮输入完整技能名称。 |
 | 同名目录已存在 | 检查旧版并先完整备份到 skills 扫描目录之外，再更新；不要混合文件。 |
 | 找不到 PhotoCraft CLI | 提供真实的 `photocraft-cli.exe` 路径，或配置 `PHOTOCRAFT_CLI`／PATH。 |
